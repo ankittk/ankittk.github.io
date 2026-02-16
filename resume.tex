@@ -1,0 +1,219 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+\usepackage{helvet}  % sans-serif (use \usepackage[sfdefault]{roboto} if you install: tlmgr install roboto)
+\renewcommand{\familydefault}{\sfdefault}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\footskip}{5pt}
+
+% Adjusted margins for more vertical space, slightly less aggressive than before
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.6in} % Slightly less aggressive top margin reduction
+\addtolength{\textheight}{1.2in} % Slightly less aggressive text height increase
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+% Global list settings - apply only to default itemize, our resumeSubHeadingList will override
+\setlist{nosep, leftmargin=0.15in}
+
+% Tighter section spacing to fit 2 pages
+\titlespacing*{\section}{0pt}{5pt plus 1pt minus 1pt}{3pt plus 1pt minus 1pt}
+
+% Section title format with rule just after title (small gap)
+\titleformat{\section}
+  {\large\bfseries\scshape\raggedright}{}{0em}{}[\vspace{0.2em}\titlerule]
+
+\pdfgentounicode=1
+
+% Resume commands
+
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+
+\newcommand{\resumeSubheading}[4]{%
+\vspace{3pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textit{#2} \\
+    \textit{#3} & \textit{#4} \\
+  \end{tabular*}\vspace{0pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{%
+\vspace{3pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textit{#2} \\
+  \end{tabular*}\vspace{-2pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+
+
+\newcommand{\resumeSubHeadingList}{\begin{itemize}[leftmargin=0.15in, label={}, itemsep=0pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+% Load hyperref last so links and PDF metadata work correctly
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdfauthor={Ankit Kumar}, pdftitle={Ankit Kumar -- Resume}}
+\urlstyle{same}
+
+\begin{document}
+\linespread{1.03}\selectfont
+\begin{center}
+  {\Huge\textbf{ANKIT KUMAR}} \\
+  \vspace{4pt}
+  \small
+  \Letter\ \href{mailto:ankittkmail@gmail.com}{ankittkmail@gmail.com} $|$
+  \Mobilefone\ \href{tel:+31686438600}{+31-686438600} $|$
+  \href{https://github.com/ankittk}{github.com/ankittk} $|$
+  \href{https://www.linkedin.com/in/ankittkin/}{linkedin.com/in/ankittkin} $|$
+  \href{https://ankittk.medium.com/}{ankittk.medium.com}
+\end{center}
+
+
+\vspace{-4pt}
+\section*{Summary}
+\begin{small}
+Senior Platform Engineer with 6 years of experience in building distributed systems, scalable cloud infrastructure, and high-impact internal developer tools. Proficient in Go, Kubernetes, and CI/CD pipelines, with a strong focus on reliability, security, and developer experience. CKA certified and passionate about creating platforms that empower engineering teams to move faster and more confidently.
+\end{small}
+\vspace{-2pt}
+\section{Technical Skills}
+\begin{small}
+\begin{tabular}{ p{5.5cm} p{10cm} }
+  \textbf{Languages} & Go, Python, Java, C++, C \\
+  \textbf{Distributed Systems \& APIs} & Microservices, gRPC, REST, Databases \\
+  \textbf{Cloud, DevOps \& Platform} & Kubernetes, Docker, Helm, AWS, GCP, Terraform, CI/CD,\newline Observability, GitOps, Internal Developer Platform \\
+  \textbf{AI \& LLM Ecosystem} & Claude, Cursor, ChatGPT, GitHub Copilot, \newline Agentic Systems, LLMs, LLMOps, MCP \\
+  \textbf{Tools \& Leadership} & Git, Linux, Prometheus, Grafana, ArgoCD, System Design,\newline Developer Relations, Leadership, Communication \\
+\end{tabular}
+\end{small}
+\vspace{2pt}
+\section{Experience}
+\resumeSubHeadingList
+ \resumeSubheading
+      {Senior Platform Engineer (Build \& Deploy)}{Nov 2025 -- Present}
+      {Studocu} {Amsterdam, The Netherlands}
+      \begin{itemize}
+        \resumeItem{Leading a team of 3: planning roadmap and priorities, mentoring engineers, and designing solutions for developer experience problems across product and AI teams, enabling faster, more reliable delivery.}
+        \resumeItem{Built a dynamic GitOps-style auto-deploy staging workflow using GitHub Actions and reusable composite actions for 10+ services, enabling seamless deployments across multiple AWS EKS regions.}
+        \resumeItem{Introduced ArgoCD to establish end-to-end GitOps-based continuous delivery with fine-grained RBAC, automated sync policies, environment-specific configurations, and enhanced deployment visibility, auditability, and rollback capabilities.}
+      \end{itemize}
+ \resumeSubheading
+      {Senior Platform Engineer (Developer Experience)}{Apr 2024 -- Oct 2025}
+      {Weave HQ} {Remote, India}
+      \begin{itemize}
+        \resumeItem{Developed CLI tooling to enable canary deployments by monitoring service-specific metrics exposed via Prometheus.}
+        \resumeItem{Accelerated Git-based \href{https://engineering.getweave.com/post/deployment-pipeline/}{\textbf{deployment pipeline}}, reducing deploy time to under 60s and improving developer feedback loops.}
+        \resumeItem{Enhanced local development and deployment by evolving CLI tooling and automating environment setup using Go.}
+        \resumeItem{Wrote integration and unit tests, enhanced Go templates, and migrated schema tooling to a new `protoc` generator using `buf`.}
+        \resumeItem{Introduced GitHub repository caching, reducing CLI bootstrap time significantly and improving local dev performance.}
+        \resumeItem{Built GitHub Actions-based checks and CI jobs to prevent bad deploys—empowering developers to detect issues early.}
+        \resumeItem{Actively contributed to hiring, mentoring, onboarding, and \href{https://engineering.getweave.com/post/weave-devs-dont-do/}{\textbf{developer collaboration}} through documentation and advocacy.}
+      \end{itemize}
+
+  \resumeSubheading
+      {Platform Engineer (Developer Experience)}{May 2022 -- Mar 2024}
+      {Weave HQ}{Remote, India}
+      \begin{itemize}
+        \resumeItem{Designed and scaled the redeployer to auto-deploy 200+ apps/day, enabling teams to ship faster with confidence.}
+        \resumeItem{Created a schema-to-API doc system using Swagger UI, integrating proto schema service for prod and dev environments.}
+        \resumeItem{Maintained internal CLI (`bart`) with 10+ commands and `bart-api` to streamline engineer workflows and environment setup.}
+        \resumeItem{Migrated to a new `protoc` generator, added multi-language support using `buf`, and released fully tested tooling.}
+        \resumeItem{Improved apps-info latency (20s → 4ms) by implementing optimized cache logic after burn rate incident.}
+        \resumeItem{Automated testing and CI pipelines with GitHub Actions for better feedback loops and resilient service delivery.}
+      \end{itemize}
+
+  \resumeSubheading
+    {Software Engineer (Users Infrastructure)}{Aug 2021 -- Apr 2022}
+    {Weave HQ}{Remote, India}
+    \begin{itemize}
+      \resumeItem{Led development of internal audit query tooling (Phase 1), enabling secure and efficient investigation of user actions across systems.}
+      \resumeItem{Worked on TAS Edge API tests and Dev0 service migrations, ensuring smooth rollout and backward compatibility.}
+    \end{itemize}
+
+\pagebreak
+\resumeSubheading
+    {SDE • Engineer - 1 (Visual Intelligence)}{Jan 2021 -- July 2021}
+    {Samsung Electronics}{Noida, India}
+    \begin{itemize}
+      \resumeItem{Part of the ACR team in Visual Intelligence working on automatic content and fingerprint recognition modules.}
+      \resumeItem{Designed and deployed APIs for fingerprint recognition, handling 2M+ daily matches with 96\% accuracy.}
+      \resumeItem{Reduced API latency by 40\% via intelligent caching, significantly improving user experience.}
+      \resumeItem{Built monitoring tools to detect critical node performance issues such as memory leaks, disk overconsumption, and CPU spikes at a global scale.}
+    \end{itemize}
+  \resumeSubheading
+    {Software Engineer Internship}{Jul 2020 -- Dec 2020}
+    {Yulu Bikes}{Remote, India}
+    \begin{itemize}
+      \resumeItem{Led the first production-ready release by building key features including user onboarding and vehicle tracking, enhancing system reliability through rigorous testing, migrating from monolithic to microservices architecture, and contributing to the PoC and database design for the Yulu–Bajaj Auto test-drive application.}
+    \end{itemize}
+\resumeSubHeadingListEnd
+\vspace{2pt}
+\section{Self-Hosted Project}
+\resumeSubHeadingList
+    \resumeProjectHeading
+        {\textbf{\href{https://snackytalky.com}{snackytalky.com}}}{}
+        \resumeItem{A personal blog to document food, cooking, and travel destinations - Go backend, TypeScript frontend, containerized and self-hosted on a home server, exposed via Cloudflare Tunnel.}
+\resumeSubHeadingListEnd
+\vspace{2pt}
+\section{Open-Source Projects}
+\resumeSubHeadingList
+    \resumeProjectHeading
+        {\textbf{\href{https://github.com/calque-ai/go-calque}{go-calque}}}{}
+        \resumeItem{Improved the agent system by making interactions between agents smoother and easier to compose, enabling more reliable multi-step AI workflows.}
+        \resumeItem{Enhanced middleware capabilities so developers can easily plug in retries, fallbacks, logging, and validation without modifying core logic.}
+        \resumeItem{Made the overall flow structure more flexible, allowing agents and middleware to be rearranged or combined in any order.}
+
+\resumeProjectHeading
+    {\textbf{\href{https://github.com/mcpjungle/MCPJungle}{MCPJungle}}}{}
+    \resumeItem{Contributed improvements to the MCP plugin ecosystem, making it easier for clients to discover, connect, and interact with MCP servers.}
+    \resumeItem{Enhanced command-line tooling for registering and managing MCP servers, improved reliability of tool execution and communication flows.}
+
+  \resumeProjectHeading
+      {\textbf{\href{https://github.com/ankittk/go-grpc-gateway-openapi}{gRPC-Gateway + OpenAPI}}}{}
+      \resumeItem{A working demo that showcases how to expose gRPC services as REST endpoints using gRPC-Gateway in Go. Automatically generates OpenAPI specifications from proto files and serves interactive Swagger UI for improved developer experience.}
+\resumeSubHeadingListEnd
+\vspace{2pt}
+\section{Certifications}
+\resumeSubHeadingList
+  \resumeItem{\href{https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/7e528881-d741-4780-a91e-1e5c5daebfe2-ankit-kumar-93cc3b7b-5b66-4fd5-83b0-37cc7a99175a-certificate.pdf}{Certified Kubernetes Administrator (CKA)}}
+\resumeSubHeadingListEnd
+\vspace{4pt}
+\section{Education}
+\resumeSubHeadingList
+  \resumeSubheading
+      {National Institute Of Technology, Hamirpur}{Jul 2016 -- Jun 2020}
+      {B.Tech in Computer Science and Engineering (GPA: 8.2/10)}{Himachal Pradesh, India}
+\resumeSubHeadingListEnd
+\vspace{4pt}
+\section{Achievements}
+\resumeSubHeadingList
+  \resumeItem{Completed my first swimathon (3k) and triathlon (1.5–60–15).\newline Secured Runner-up (18–30 age category) at the Bergman 2025 Duathlon (10–40–5).}
+  \resumeItem{Stay Hungry Employee of Q1 2022 – Weave}
+  \resumeItem{Most Creative Team, ACR – Samsung}
+\resumeSubHeadingListEnd
+\vspace{4pt}
+\section{Interests}
+\resumeSubHeadingList
+  \resumeItem{Technical Blogging, Travelling, Cooking}
+  \resumeItem{Running, Cycling, Swimming, Yoga (200H TTC), Cricket, Basketball}
+\resumeSubHeadingListEnd
+
+
+
+\end{document}
