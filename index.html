@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankit Kumar — Resume</title>
+<meta name="description" content="Ankit Kumar — Senior Platform Engineer & Developer Experience lead. Kubernetes, GitOps, Internal Developer Platforms, AI Platform.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23141310'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23d97757'%3E%E2%9D%AF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141310;
+    --panel:#1c1a16;
+    --border:#3a352c;
+    --border-dim:#2a2620;
+    --text:#e8e3d8;
+    --text-dim:#8a8478;
+    --text-faint:#5c574c;
+    --accent:#d97757;
+    --accent-dim:#a85f45;
+    --green:#7fae6b;
+    --blue:#7ba7bc;
+    --cursor:#d97757;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'JetBrains Mono', ui-monospace, 'Fira Code', Menlo, Consolas, monospace;
+    font-size:14px;
+    line-height:1.6;
+    padding:28px 16px 80px;
+    min-height:100vh;
+  }
+  .wrap{max-width:820px;margin:0 auto;}
+
+  /* top bar mimicking terminal chrome */
+  .termbar{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 14px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:8px 8px 0 0;
+    color:var(--text-faint);
+    font-size:12px;
+  }
+  .termbar .dots{display:flex;gap:6px;margin-right:6px;}
+  .termbar .dot{width:10px;height:10px;border-radius:50%;background:var(--border);}
+  .termbar .path{color:var(--text-dim);}
+
+  .screen{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-top:none;
+    border-radius:0 0 8px 8px;
+    padding:22px 22px 8px;
+  }
+
+  /* banner box like claude code welcome box */
+  .banner{
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:16px 20px;
+    margin-bottom:22px;
+  }
+  .banner .name{color:var(--accent);font-weight:700;font-size:16px;}
+  .banner .sub{color:var(--text-dim);margin-top:6px;}
+  .banner .links{margin-top:10px;color:var(--text-dim);}
+  .banner .links a{color:var(--blue);text-decoration:none;}
+  .banner .links a:hover{text-decoration:underline;}
+  .banner .sep{color:var(--text-faint);margin:0 6px;}
+
+  /* prompt line */
+  .prompt{display:flex;gap:10px;margin:22px 0 10px;color:var(--text-dim);align-items:baseline;}
+  .prompt .chevrons{color:var(--accent);font-weight:700;}
+  .prompt .cmd{color:var(--text);}
+
+  /* tool-output style block */
+  .block{margin:0 0 6px 22px;}
+  .block .head{
+    color:var(--text-dim);
+    display:flex;gap:8px;align-items:baseline;
+    margin-bottom:2px;
+  }
+  .block .head .bullet{color:var(--accent);}
+  .block .head .label{color:var(--text);font-weight:600;}
+  .block .body{
+    border-left:2px solid var(--border);
+    padding-left:16px;
+    margin-left:5px;
+    color:var(--text-dim);
+  }
+  .block .body p{margin:6px 0 12px;}
+
+  .entry{margin-bottom:14px;}
+  .entry:last-child{margin-bottom:0;}
+  .entry-title{color:var(--text);font-weight:600;}
+  .entry-meta{color:var(--text-faint);font-size:12.5px;margin:1px 0 6px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .entry ul{margin:0;padding-left:18px;}
+  .entry li{margin:3px 0;color:var(--text-dim);}
+  .entry li::marker{color:var(--text-faint);}
+  .entry a{color:var(--blue);text-decoration:none;}
+  .entry a:hover{text-decoration:underline;}
+  .tag{color:var(--green);}
+
+  .skills-row{display:flex;gap:10px;margin:4px 0;flex-wrap:wrap;}
+  .skills-row .k{color:var(--text);min-width:150px;flex:0 0 150px;}
+  .skills-row .v{color:var(--text-dim);flex:1;min-width:200px;}
+
+  .footerline{
+    color:var(--text-faint);
+    margin:26px 0 4px;
+    display:flex;gap:10px;align-items:center;
+  }
+  .cursor{
+    display:inline-block;width:7px;height:15px;background:var(--cursor);
+    animation:blink 1s steps(1) infinite;vertical-align:-2px;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .inputbar{
+    display:flex;align-items:center;gap:10px;
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:10px 14px;
+    margin-top:14px;
+    color:var(--text-faint);
+  }
+  .inputbar .gt{color:var(--accent);}
+
+  a.plain{color:var(--blue);}
+
+  @media (max-width:600px){
+    body{font-size:12.5px;padding:16px 8px 60px;}
+    .screen{padding:16px 14px 6px;}
+    .skills-row .k{flex:0 0 120px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="termbar">
+    <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+    <span class="path">ankit@resume ~ %</span>
+  </div>
+
+  <div class="screen">
+
+    <div class="banner">
+      <div class="name">✻ Ankit Kumar</div>
+      <div class="sub">Senior Platform Engineer · Developer Experience · AI Platform &nbsp;—&nbsp; Amsterdam, The Netherlands</div>
+      <div class="links">
+        <a href="mailto:kianxtri@gmail.com">kianxtri@gmail.com</a><span class="sep">·</span>
+        <a href="tel:+31686438600">+31 6 86438600</a><span class="sep">·</span>
+        <a href="https://github.com/ankittk" target="_blank" rel="noopener">github.com/ankittk</a><span class="sep">·</span>
+        <a href="https://www.linkedin.com/in/kianxtri/" target="_blank" rel="noopener">linkedin.com/in/kianxtri</a>
+      </div>
+    </div>
+
+    <div class="prompt"><span class="chevrons">&gt;</span><span class="cmd">cat summary.md</span></div>
+    <div class="block">
+      <div class="body">
+        <p>Senior Platform Engineer and Developer Experience lead with 6 years building Kubernetes platforms, GitOps delivery, and internal developer platforms. Led a team of 3 at Studocu on AI platform and DevEx roadmap. Four years at Weave HQ, promoted to Senior Software Engineer. Shipped GitOps on AWS EKS, Backstage IDP, 250 deploys/day ephemeral environments, and sub-60s deployment pipelines.</p>
+      </div>
+    </div>
+
+    <div class="prompt"><span class="chevrons">&gt;</span><span class="cmd">ls experience/</span></div>
+    <div class="block">
+      <div class="head"><span class="bullet">●</span><span class="label">Experience</span></div>
+      <div class="body">
+
+        <div class="entry">
+          <div class="entry-title">Senior Software Engineer (AI Platform) — Studocu</div>
+          <div class="entry-meta"><span>Amsterdam, The Netherlands</span><span>Nov 2025 — Present</span></div>
+          <ul>
+            <li>Leading a team of 3: driving technical roadmap, mentoring engineers, and setting architecture direction for developer experience solutions across product and AI teams, influencing org-wide engineering standards.</li>
+            <li>Built an AI-powered self-service developer platform using Claude and Cursor, cutting service bootstrap time from hours to under 2 minutes via a guided intake questionnaire for both technical and non-technical stakeholders, improving DORA metrics including deployment frequency and lead time for changes.</li>
+            <li>Architected a dynamic, ArgoCD-based ephemeral environment deployer, scaling from 50 deployments/week to 250 deployments/day across developer and agent-driven workloads, eliminating manual environment setup and shortening developer feedback loops.</li>
+            <li>Implemented a GitOps-based delivery platform using GitHub Actions, ArgoCD, Helm, and Crossplane to provision infrastructure and deploy 10+ services across AWS EKS regions.</li>
+            <li>Built an OpenTelemetry layer on the same GitOps platform for unified traces, metrics, and deploy-to-runtime visibility across EKS services.</li>
+            <li>Hosted and operated LangGraph and led the LiteLLM to Bifrost gateway migration, managing AI-related workloads spanning documentation services and Kubernetes-based management of platform services powering org-wide AI adoption.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-title">Senior Software Engineer (Developer Experience) — Weave HQ</div>
+          <div class="entry-meta"><span>Remote, India</span><span>Apr 2024 — Oct 2025</span></div>
+          <ul>
+            <li>Promoted to Senior Software Engineer for technical leadership on developer experience and platform infrastructure.</li>
+            <li>Developed CLI tooling for canary deployments using Prometheus metrics to gate rollouts on service health.</li>
+            <li>Accelerated Git-based <a href="https://engineering.getweave.com/post/deployment-pipeline/" target="_blank" rel="noopener">deployment pipeline</a>, reducing deploy time to under 60s across the engineering org.</li>
+            <li>Built an internal developer platform on Backstage for self-service service catalogs, docs, and scaffolding templates.</li>
+            <li>Integrated MCP into internal CLI tooling and managed MLOps workloads for model and tool access across teams.</li>
+            <li>Contributed to hiring, mentoring, onboarding, and <a href="https://engineering.getweave.com/post/weave-devs-dont-do/" target="_blank" rel="noopener">developer collaboration</a> through documentation and advocacy.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-title">Software Engineer (Developer Experience) — Weave HQ</div>
+          <div class="entry-meta"><span>Remote, India</span><span>Aug 2021 — Mar 2024</span></div>
+          <ul>
+            <li>Drove measurable reliability and latency improvements on core developer infrastructure across the Platform and Developer Experience teams.</li>
+            <li>Designed and scaled the redeployer to auto-deploy 200+ apps/day, enabling teams to ship faster with confidence.</li>
+            <li>Created a schema-to-API doc system using Swagger UI, integrating proto schema service for prod and dev environments.</li>
+            <li>Maintained internal CLI (<span class="tag">bart</span>) with 10+ commands and <span class="tag">bart-api</span> to streamline engineer workflows and environment setup.</li>
+            <li>Migrated to a new <span class="tag">protoc</span> generator, added multi-language support using <span class="tag">buf</span>, and released fully tested tooling.</li>
+            <li>Cut apps-info latency from 20s to 4ms by implementing optimized cache logic after a burn-rate incident.</li>
+            <li>Automated testing and CI pipelines with GitHub Actions for better feedback loops and resilient service delivery.</li>
+            <li>Led development of internal audit query tooling (Phase 1), enabling secure and efficient investigation of user actions across systems.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-title">Software Engineer I (Visual Intelligence) — Samsung Electronics</div>
+          <div class="entry-meta"><span>Noida, India</span><span>Jan 2021 — Jul 2021</span></div>
+          <ul>
+            <li>Part of the ACR team in Visual Intelligence working on automatic content and fingerprint recognition modules.</li>
+            <li>Designed and deployed APIs for fingerprint recognition, handling 2M+ daily matches with 96% accuracy.</li>
+            <li>Reduced API latency by 40% via intelligent caching, significantly improving user experience.</li>
+            <li>Built monitoring tools to detect critical node performance issues such as memory leaks, disk overconsumption, and CPU spikes at a global scale.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="prompt"><span class="chevrons">&gt;</span><span class="cmd">cat projects.json</span></div>
+    <div class="block">
+      <div class="head"><span class="bullet">●</span><span class="label">Projects</span></div>
+      <div class="body">
+
+        <div class="entry">
+          <div class="entry-title"><a href="https://github.com/ankittk/airlock" target="_blank" rel="noopener">Airlock</a></div>
+          <div class="entry-meta"><span>Research project on AI release engineering for agents</span><span><a href="https://github.com/ankittk/airlock" target="_blank" rel="noopener">GitHub</a></span></div>
+          <ul>
+            <li>Studies how to ship AI agents safely. Treats prompts, skills, MCP servers, and models as one releasable unit.</li>
+            <li>Snapshots agent state, diffs behavior changes, maps blast radius, and runs policy checks before merge.</li>
+            <li>Returns PASS, FAIL, or NEEDS APPROVAL when prompts, tools, or model config change in a pull request.</li>
+            <li>Added statistical evals and a fail-closed GitHub Actions workflow so CI blocks risky agent changes.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-title"><a href="https://github.com/calque-ai/go-calque" target="_blank" rel="noopener">go-calque</a></div>
+          <div class="entry-meta"><span>Open source agent framework with pluggable middleware</span><span><a href="https://github.com/calque-ai/go-calque" target="_blank" rel="noopener">GitHub</a></span></div>
+          <ul>
+            <li>Contributed to smoother multi-agent flows so teams can chain agents for longer tasks with less glue code.</li>
+            <li>Extended middleware for retries, fallbacks, logging, and validation without changing core agent logic.</li>
+            <li>Made agents and middleware easy to reorder or combine so developers can try new pipeline layouts quickly.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-title"><a href="https://github.com/mcpjungle/MCPJungle" target="_blank" rel="noopener">MCPJungle</a></div>
+          <div class="entry-meta"><span>Open source registry and tooling for MCP servers</span><span><a href="https://github.com/mcpjungle/MCPJungle" target="_blank" rel="noopener">GitHub</a></span></div>
+          <ul>
+            <li>Improved how clients find, connect to, and talk with MCP servers across the plugin ecosystem.</li>
+            <li>Upgraded CLI commands for registering servers, running health checks, and managing server lifecycle.</li>
+            <li>Hardened tool execution paths so agent workflows fail clearly instead of hanging on bad server state.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-title"><a href="https://snackytalky.com" target="_blank" rel="noopener">snackytalky.com</a></div>
+          <div class="entry-meta"><span>Self-hosted personal blog, Go API and TypeScript frontend</span><span></span></div>
+          <ul>
+            <li>Built and operated a full-stack blog on a home server with Docker, PostgreSQL, Cloudflare Tunnel, and custom deploy and backup scripts.</li>
+            <li>Covers food, cooking, and travel content as a side project for end-to-end product and platform ownership.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="prompt"><span class="chevrons">&gt;</span><span class="cmd">cat certifications.txt education.txt</span></div>
+    <div class="block">
+      <div class="head"><span class="bullet">●</span><span class="label">Certifications &amp; Education</span></div>
+      <div class="body">
+        <div class="entry">
+          <ul>
+            <li>Certified Kubernetes Administrator (CKA), Linux Foundation</li>
+            <li>Platform Engineering Certified Practitioner</li>
+          </ul>
+        </div>
+        <div class="entry">
+          <div class="entry-title">National Institute of Technology, Hamirpur</div>
+          <div class="entry-meta"><span>B.Tech in Computer Science and Engineering (GPA: 8.2/10)</span><span>Jul 2016 — Jun 2020 · Himachal Pradesh, India</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt"><span class="chevrons">&gt;</span><span class="cmd">skills --list</span></div>
+    <div class="block">
+      <div class="head"><span class="bullet">●</span><span class="label">Skills</span></div>
+      <div class="body">
+        <div class="skills-row"><span class="k">Focus</span><span class="v">Platform Engineering, Developer Experience, Internal Developer Platforms, AI Platform</span></div>
+        <div class="skills-row"><span class="k">Languages</span><span class="v">Go, Python, TypeScript, JavaScript, Java, C++</span></div>
+        <div class="skills-row"><span class="k">Cloud &amp; Platform</span><span class="v">Kubernetes, AWS, GCP, Azure, Docker, Helm, Crossplane, Terraform, Linux</span></div>
+        <div class="skills-row"><span class="k">Developer Platform</span><span class="v">ArgoCD, GitOps, Backstage, CI/CD, GitHub Actions, CLI tooling</span></div>
+        <div class="skills-row"><span class="k">Distributed Systems</span><span class="v">gRPC, REST, Microservices, Event-driven Systems, System Design</span></div>
+        <div class="skills-row"><span class="k">Observability</span><span class="v">Prometheus, Grafana, OpenTelemetry</span></div>
+        <div class="skills-row"><span class="k">AI &amp; Agents</span><span class="v">LangGraph, MCP, LiteLLM, LLMOps, RAG, Agentic Systems</span></div>
+      </div>
+    </div>
+
+    <div class="footerline">tokens used: 6yrs · context: full-stack platform eng · status: <span style="color:var(--green)">available</span></div>
+
+    <div class="inputbar"><span class="gt">&gt;</span> get in touch<span class="cursor"></span></div>
+
+  </div>
+</div>
+</body>
+</html>
