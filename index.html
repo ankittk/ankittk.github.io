@@ -133,6 +133,32 @@
 
   a.plain{color:var(--blue);}
 
+  /* boot overlay */
+  #boot{
+    position:fixed;inset:0;z-index:999;
+    background:var(--bg);color:var(--text-dim);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    transition:opacity .35s ease;
+  }
+  #boot .bootline{margin:2px 0;}
+  #boot .dim{color:var(--text-faint);}
+  #boot .accentline{color:var(--accent);}
+
+  /* typing cursor shown at end of an in-progress command */
+  .typing-cursor{
+    display:inline-block;width:7px;height:14px;background:var(--cursor);
+    margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite;
+  }
+
+  /* "thinking" spinner line between a typed command and its revealed output */
+  .thinking{
+    display:flex;gap:8px;align-items:baseline;
+    margin:6px 0 6px 0;color:var(--text-faint);
+  }
+  .thinking .spin{color:var(--accent);display:inline-block;width:1em;}
+  .thinking .esc{font-size:11px;color:var(--text-faint);}
+
   @media (max-width:600px){
     body{font-size:12.5px;padding:16px 8px 60px;}
     .screen{padding:16px 14px 6px;}
@@ -141,6 +167,10 @@
 </style>
 </head>
 <body>
+<div id="boot" aria-hidden="true">
+  <div class="bootline accentline">➜ claude-code --resume ankit-kumar</div>
+  <div class="bootline dim">booting environment<span id="bootdots">...</span></div>
+</div>
 <div class="wrap">
 
   <div class="termbar">
@@ -313,5 +343,151 @@
 
   </div>
 </div>
+
+<script>
+(function(){
+  var boot = document.getElementById('boot');
+  var screen = document.querySelector('.screen');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var already = false;
+  try { already = sessionStorage.getItem('resume_animated') === '1'; } catch(e){}
+
+  if (reduce || already) {
+    if (boot) boot.remove();
+    return; // static resume, fully visible already — no JS animation needed
+  }
+
+  // items to animate, in document order: prompt/block pairs, plus footer + input bar
+  var items = Array.prototype.filter.call(screen.children, function(el){
+    return el.matches('.prompt, .block, .footerline, .inputbar');
+  });
+
+  var cancelled = false;
+  var SPIN = ['⠋','⠙','⠹','⠸','⠼','⠴','⠦','⠧','⠇','⠏'];
+
+  items.forEach(function(el){
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(4px)';
+    el.style.transition = 'opacity .3s ease, transform .3s ease';
+  });
+
+  function markDone(){
+    try { sessionStorage.setItem('resume_animated', '1'); } catch(e){}
+  }
+
+  function skip(){
+    if (cancelled) return;
+    cancelled = true;
+    if (boot) { boot.style.opacity = 0; setTimeout(function(){ boot.remove(); }, 200); }
+    document.querySelectorAll('.thinking').forEach(function(n){ n.remove(); });
+    document.querySelectorAll('.typing-cursor').forEach(function(n){ n.remove(); });
+    document.querySelectorAll('.cmd[data-full]').forEach(function(c){ c.textContent = c.dataset.full; });
+    items.forEach(function(el){
+      el.style.opacity = 1; el.style.transform = 'none';
+      var kids = el.querySelectorAll('.body > *');
+      kids.forEach(function(k){ k.style.opacity = 1; k.style.transform = 'none'; k.style.transitionDelay = '0ms'; });
+    });
+    markDone();
+  }
+
+  window.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') skip();
+  });
+  document.addEventListener('click', skip, { once: true });
+
+  function wait(ms){
+    return new Promise(function(resolve){
+      var t = setTimeout(resolve, ms);
+      var iv = setInterval(function(){
+        if (cancelled) { clearInterval(iv); clearTimeout(t); resolve(); }
+      }, 30);
+    });
+  }
+
+  function typeCmd(el){
+    var cmdSpan = el.querySelector('.cmd');
+    el.style.opacity = 1; el.style.transform = 'none';
+    if (!cmdSpan) return Promise.resolve();
+    var full = cmdSpan.textContent;
+    cmdSpan.dataset.full = full;
+    cmdSpan.textContent = '';
+    var cursor = document.createElement('span');
+    cursor.className = 'typing-cursor';
+    el.appendChild(cursor);
+    var i = 0;
+    return new Promise(function(resolve){
+      function step(){
+        if (cancelled) { cmdSpan.textContent = full; cursor.remove(); resolve(); return; }
+        if (i >= full.length) { cursor.remove(); resolve(); return; }
+        cmdSpan.textContent += full[i++];
+        setTimeout(step, 16 + Math.random() * 24);
+      }
+      step();
+    });
+  }
+
+  function thinking(el){
+    if (cancelled) return Promise.resolve();
+    var t = document.createElement('div');
+    t.className = 'thinking';
+    var s = document.createElement('span');
+    s.className = 'spin';
+    s.textContent = SPIN[0];
+    t.appendChild(s);
+    t.appendChild(document.createTextNode(' Thinking…'));
+    var esc = document.createElement('span');
+    esc.className = 'esc';
+    esc.textContent = ' (esc to skip)';
+    t.appendChild(esc);
+    el.insertAdjacentElement('afterend', t);
+    var i = 0;
+    var iv = setInterval(function(){ i = (i + 1) % SPIN.length; s.textContent = SPIN[i]; }, 80);
+    return wait(280 + Math.random() * 320).then(function(){
+      clearInterval(iv);
+      t.remove();
+    });
+  }
+
+  function reveal(el){
+    el.style.opacity = 1; el.style.transform = 'none';
+    var kids = el.querySelectorAll('.body > *');
+    kids.forEach(function(k, i){
+      k.style.opacity = 0;
+      k.style.transform = 'translateY(4px)';
+      k.style.transition = 'opacity .25s ease, transform .25s ease';
+      k.style.transitionDelay = (i * 45) + 'ms';
+    });
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        kids.forEach(function(k){ k.style.opacity = 1; k.style.transform = 'none'; });
+      });
+    });
+  }
+
+  async function run(){
+    for (var idx = 0; idx < items.length; idx++) {
+      if (cancelled) break;
+      var el = items[idx];
+      if (el.classList.contains('prompt')) {
+        await typeCmd(el);
+        await thinking(el);
+      } else {
+        reveal(el);
+        await wait(110);
+      }
+    }
+    if (!cancelled) markDone();
+  }
+
+  if (boot) {
+    setTimeout(function(){
+      boot.style.opacity = 0;
+      setTimeout(function(){ boot.remove(); run(); }, 350);
+    }, 650);
+  } else {
+    run();
+  }
+})();
+</script>
 </body>
 </html>
