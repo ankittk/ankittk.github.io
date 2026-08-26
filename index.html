@@ -5,29 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ankit Kumar — Resume</title>
 <meta name="description" content="Ankit Kumar — Senior Platform Engineer & Developer Experience lead. Kubernetes, GitOps, Internal Developer Platforms, AI Platform.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23141310'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23d97757'%3E%E2%9D%AF%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23080b0a'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%2339ff9c'%3E%E2%9D%AF%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#141310;
-    --panel:#1c1a16;
-    --border:#3a352c;
-    --border-dim:#2a2620;
-    --text:#e8e3d8;
-    --text-dim:#8a8478;
-    --text-faint:#5c574c;
-    --accent:#d97757;
-    --accent-dim:#a85f45;
-    --green:#7fae6b;
-    --blue:#7ba7bc;
-    --cursor:#d97757;
+    --bg:#080b0a;
+    --panel:#0d1210;
+    --border:#1e2b25;
+    --border-dim:#141d19;
+    --text:#d8f2e2;
+    --text-dim:#7d9689;
+    --text-faint:#465850;
+    --accent:#39ff9c;
+    --accent-dim:#1f8a5a;
+    --green:#39ff9c;
+    --blue:#22d3ee;
+    --cursor:#39ff9c;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
-    background:var(--bg);
+    background:
+      radial-gradient(circle 600px at 50% -10%, rgba(57,255,156,.08), transparent 70%),
+      linear-gradient(rgba(57,255,156,.035) 1px, transparent 1px) 0 0/100% 26px,
+      var(--bg);
     color:var(--text);
     font-family:'JetBrains Mono', ui-monospace, 'Fira Code', Menlo, Consolas, monospace;
     font-size:14px;
@@ -72,7 +75,7 @@
   .banner::before{
     content:"";
     position:absolute;inset:-1px;
-    background:radial-gradient(circle 220px at var(--mx,50%) var(--my,0%), rgba(217,119,87,.10), transparent 70%);
+    background:radial-gradient(circle 220px at var(--mx,50%) var(--my,0%), rgba(57,255,156,.14), transparent 70%);
     pointer-events:none;
     z-index:0;
     transition:opacity .3s ease;
@@ -80,7 +83,7 @@
   }
   .banner:hover::before{opacity:1;}
   .banner > *{position:relative;z-index:1;}
-  .banner .name{color:var(--accent);font-weight:700;font-size:16px;}
+  .banner .name{color:var(--accent);font-weight:700;font-size:16px;text-shadow:0 0 12px rgba(57,255,156,.45);}
   .banner .spark{display:inline-block;}
   .banner .sub{color:var(--text-dim);margin-top:6px;}
   .banner .links{margin-top:10px;color:var(--text-dim);}
@@ -145,8 +148,9 @@
     transition:background .2s ease, border-color .2s ease, transform .2s ease;
   }
   .entry:hover{
-    background:rgba(217,119,87,.06);
+    background:rgba(57,255,156,.05);
     border-left-color:var(--accent-dim);
+    box-shadow:-1px 0 8px rgba(57,255,156,.15);
     transform:translateX(2px);
   }
   .entry:last-child{margin-bottom:0;}
@@ -160,7 +164,7 @@
   .tag{color:var(--green);}
 
   .skills-row{display:flex;gap:10px;margin:4px 0;flex-wrap:wrap;padding:2px 6px;border-radius:3px;transition:background .2s ease;}
-  .skills-row:hover{background:rgba(217,119,87,.05);}
+  .skills-row:hover{background:rgba(57,255,156,.05);}
   .skills-row .k{color:var(--text);min-width:150px;flex:0 0 150px;}
   .skills-row .v{color:var(--text-dim);flex:1;min-width:200px;}
 
@@ -197,13 +201,13 @@
   .status-dot{
     display:inline-block;width:7px;height:7px;border-radius:50%;
     background:var(--green);margin-right:2px;vertical-align:1px;
-    box-shadow:0 0 0 0 rgba(127,174,107,.6);
+    box-shadow:0 0 0 0 rgba(57,255,156,.6);
     animation:statusPulse 2s ease-in-out infinite;
   }
   @keyframes statusPulse{
-    0%{box-shadow:0 0 0 0 rgba(127,174,107,.5);}
-    70%{box-shadow:0 0 0 5px rgba(127,174,107,0);}
-    100%{box-shadow:0 0 0 0 rgba(127,174,107,0);}
+    0%{box-shadow:0 0 0 0 rgba(57,255,156,.5);}
+    70%{box-shadow:0 0 0 5px rgba(57,255,156,0);}
+    100%{box-shadow:0 0 0 0 rgba(57,255,156,0);}
   }
 
   @media (prefers-reduced-motion: no-preference){
